@@ -1,5 +1,3 @@
-console.log("Client side js file is loaded. Script ran.");
-
 const weatherForm = document.querySelector("form");
 const addressInput = document.querySelector("input");
 const forecast = (address) =>
