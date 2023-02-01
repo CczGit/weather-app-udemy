@@ -1,16 +1,27 @@
 const weatherForm = document.querySelector("form");
 const addressInput = document.querySelector("input");
 const forecast = (address) =>
-  fetch("./weather?address=" + address).then((response) => {
+  fetch("/weather?address=" + address).then((response) => {
     response.json().then((data) => {
-      var x = document.createElement("UL");
-      x.setAttribute("id", "myUL");
-      weatherForm.appendChild(x);
+      if (data.error) {
+        var x = document.createElement("UL");
+        x.setAttribute("id", "myUL");
+        weatherForm.appendChild(x);
 
-      var y = document.createElement("LI");
-      var t = document.createTextNode(data.description);
-      y.appendChild(t);
-      document.getElementById("myUL").appendChild(y);
+        var y = document.createElement("LI");
+        var t = document.createTextNode(data.error);
+        y.appendChild(t);
+        document.getElementById("myUL").appendChild(y);
+      } else {
+        var x = document.createElement("UL");
+        x.setAttribute("id", "myUL");
+        weatherForm.appendChild(x);
+
+        var y = document.createElement("LI");
+        var t = document.createTextNode(data.description);
+        y.appendChild(t);
+        document.getElementById("myUL").appendChild(y);
+      }
       // document
       //   .querySelector("li")
       //   .appendChild(document.createTextNode(data.description));
